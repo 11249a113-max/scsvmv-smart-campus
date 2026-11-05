@@ -4,37 +4,36 @@ from flask_cors import CORS
 import re
 
 app = Flask(__name__)
+CORS(app)
 
 def preprocess_text(text):
     text = text.lower()
     text = re.sub(r'[^a-z0-9\s]', '', text)
-    words = text.split()
-    return words
-
-CORS(app, resources={
-    r"/chat": {
-        "origins": [
-            "http://127.0.0.1:5500",
-            "http://localhost:5500"
-        ]
-    }
-})
+    return text.split()
 
 @app.route("/")
 def home():
     return send_from_directory(".", "index.html")
+
+@app.route("/style.css")
+def style():
+    return send_from_directory(".", "style.css")
+
+@app.route("/script.js")
+def script():
+    return send_from_directory(".", "script.js")
+
 @app.route("/test-nlp", methods=["GET"])
 def test_nlp():
     text = "HELLO! Welcome to SCSVMV University."
-    words = preprocess_text(text)
     return jsonify({
         "original_text": text,
-        "processed_words": words
+        "processed_words": preprocess_text(text)
     })
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    data = request.get_json()
+    data = request.get_json() or {}
     message = data.get("message", "").lower()
     words = preprocess_text(message)
 
@@ -55,4 +54,3 @@ def chat():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
