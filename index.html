@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCSVMV Smart Campus Assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">🎓 SCSVMV</div>
+        <div class="nav-title">Smart Campus Assistant</div>
+        <span class="status">● Online</span>
+    </header>
+
+    <main class="container">
+        <section class="welcome">
+            <h1>Welcome to SCSVMV University</h1>
+            <p>Your AI-powered college information assistant</p>
+        </section>
+
+        <section class="chat-container">
+            <div class="chat-header">
+                <div>
+                    <h2>🤖 Campus AI Assistant</h2>
+                    <p>Ask me anything about your college</p>
+                </div>
+                <span class="online">● Active</span>
+            </div>
+
+            <div id="chat-box" class="chat-box">
+                <div class="message bot">
+                    Hello! 👋 Welcome to SCSVMV University.
+                    I am your Smart Campus Assistant.
+                    How can I help you today?
+                </div>
+            </div>
+
+            <div class="quick-questions">
+                <button onclick="askQuestion('Admission details')">Admissions</button>
+                <button onclick="askQuestion('Courses offered')">Courses</button>
+                <button onclick="askQuestion('Exam information')">Exams</button>
+                <button onclick="askQuestion('Library details')">Library</button>
+            </div>
+
+            <div class="input-area">
+                <input
+                    type="text"
+                    id="user-input"
+                    placeholder="Type your college question..."
+                >
+                <button id="send-btn">Send ➤</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 SCSVMV Smart Campus Assistant | NLP Project</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
