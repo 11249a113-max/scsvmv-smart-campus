@@ -1,3 +1,4 @@
+
 async function askQuestion(question) {
     const chatBox = document.getElementById("chat-box");
 
@@ -12,7 +13,9 @@ async function askQuestion(question) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ message: question })
+            body: JSON.stringify({
+                message: question
+            })
         });
 
         if (!response.ok) {
@@ -31,8 +34,9 @@ async function askQuestion(question) {
         errorMessage.className = "message bot";
         errorMessage.textContent =
             "Connection error: " + error.message;
+
         chatBox.appendChild(errorMessage);
-        console.error(error);
+        console.error("Chat error:", error);
     }
 
     chatBox.scrollTop = chatBox.scrollHeight;
@@ -48,10 +52,12 @@ function sendMessage() {
     }
 }
 
-document.getElementById("send-btn").addEventListener("click", sendMessage);
+document.getElementById("send-btn")
+    .addEventListener("click", sendMessage);
 
-document.getElementById("user-input").addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        sendMessage();
-    }
-});
+document.getElementById("user-input")
+    .addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    });
